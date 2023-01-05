@@ -1,1 +1,11 @@
-<p>employees works!</p>
+<h2>{{employee.name}}</h2>
+<h2>{{newEmployee}}</h2>
+<br>
+<h3>{{employee.name | uppercase}} informasjon</h3>
+<div><span>id: </span>{{employee.id}}</div>
+<div><span>e-post: </span>{{employee.email}}</div>
+
+<div>
+    <label for="name">Employee name: </label>
+    <input id="name" [(ngModel)]="employee.name" placeholder="name">
+</div>
