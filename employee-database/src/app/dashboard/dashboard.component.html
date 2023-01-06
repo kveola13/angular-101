@@ -1,1 +1,6 @@
-<p>dashboard works!</p>
+<h2>Selected Employees</h2>
+<div class="employees-menu">
+  <a *ngFor="let employee of employees" routerLink="/detail/{{ employee.id }}">
+    {{ employee.name }}
+  </a>
+</div>

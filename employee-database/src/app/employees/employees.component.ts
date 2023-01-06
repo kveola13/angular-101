@@ -10,15 +10,7 @@ import { MessageService } from '../message.service';
 })
 export class EmployeesComponent implements OnInit {
   employees: Employee[] = [];
-  selectedEmployee?: Employee;
-  constructor(
-    private employeeService: EmployeeService,
-    private messageService: MessageService
-  ) {}
-  onSelect(employee: Employee): void {
-    this.selectedEmployee = employee;
-    this.messageService.add(`Message: Selected employee ${employee.name}`);
-  }
+  constructor(private employeeService: EmployeeService) {}
   ngOnInit(): void {
     this.getEmployees();
   }
@@ -29,18 +21,3 @@ export class EmployeesComponent implements OnInit {
       .subscribe((employees) => (this.employees = employees));
   }
 }
-
-/*
-export class EmployeesComponent implements OnInit {
-  newEmployee = 'Ingunn Tangen Era';
-
-  employee: Employee = {
-    id: 1,
-    name: 'Arne Mjøs',
-    email: 'test@test.no',
-  };
-  constructor() {}
-
-  ngOnInit(): void {}
-}
-*/

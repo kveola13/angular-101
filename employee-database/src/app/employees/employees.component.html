@@ -1,42 +1,8 @@
-<!--
-<h2>{{ employee.name }}</h2>
-<h2>{{ newEmployee }}</h2>
-<br />
-<h3>{{ employee.name | uppercase }} informasjon</h3>
-<div><span>id: </span>{{ employee.id }}</div>
-<div><span>e-post: </span>{{ employee.email }}</div>
-
-<div>
-  <label for="name">Employee name: </label>
-  <input id="name" [(ngModel)]="employee.name" placeholder="name" />
-</div>
--->
-
 <h2>Itera Employees</h2>
 <ul class="employees">
   <li *ngFor="let employee of employees">
-    <button
-      [class.selected]="employee === selectedEmployee"
-      type="button"
-      (click)="onSelect(employee)"
-    >
-      <span class="id"> {{ employee.id }} </span>
-      <span class="name"> {{ employee.name }} </span>
-    </button>
+    <a routerLink="/detail/{{ employee.id }}">
+      <span class="id">{{ employee.id }}</span> {{ employee.name }}
+    </a>
   </li>
 </ul>
-<!--
-<div *ngIf="selectedEmployee">
-  <h2>{{ selectedEmployee.name | uppercase }} informasjon</h2>
-  <div>id: {{ selectedEmployee.id }}</div>
-  <div>
-    <label for="employee-name">Employee name:</label>
-    <input
-      id="employee-name"
-      [(ngModel)]="selectedEmployee.name"
-      placeholder="name"
-    />
-  </div>
-</div>
--->
-<app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
