@@ -25,7 +25,7 @@
     </button>
   </li>
 </ul>
-
+<!--
 <div *ngIf="selectedEmployee">
   <h2>{{ selectedEmployee.name | uppercase }} informasjon</h2>
   <div>id: {{ selectedEmployee.id }}</div>
@@ -38,3 +38,5 @@
     />
   </div>
 </div>
+-->
+<app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
