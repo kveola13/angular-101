@@ -1,0 +1,66 @@
+/* EmployeesComponent's private CSS styles */
+.employees {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+
+.employees li {
+  display: flex;
+}
+
+.employees button {
+  flex: 1;
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #eee;
+  margin: 0.5em;
+  padding: 0;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  height: 1.8em;
+}
+
+.employees button:hover {
+  color: #2c3a41;
+  background-color: #e6e6e6;
+  left: 0.1em;
+}
+
+.employees button:active {
+  background-color: #525252;
+  color: #fafafa;
+}
+
+.employees button.selected {
+  background-color: black;
+  color: white;
+}
+
+.employees button.selected:hover {
+  background-color: #505050;
+  color: white;
+}
+
+.employees button.selected:active {
+  background-color: black;
+  color: white;
+}
+
+.employees .id {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.8em 0.7em 0.7em 0.7em;
+  background-color: #405061;
+  line-height: 1em;
+  margin-right: 1em;
+  border-radius: 15em;
+}
+
+.employees .name {
+  align-self: center;
+}
