@@ -8,7 +8,7 @@ import { MessageService } from '../message.service';
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.css'],
 })
-export class EmployeesComponent {
+export class EmployeesComponent implements OnInit {
   employees: Employee[] = [];
   selectedEmployee?: Employee;
   constructor(
@@ -17,17 +17,16 @@ export class EmployeesComponent {
   ) {}
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
-    this.messageService.add(
-      `EmployeeService: Selected employee id=${employee.id}`
-    );
-  }
-  getEmployees(): void {
-    this.employeeService
-      .getEmployees()
-      .subscribe((employees) => (this.employees = this.employees));
+    this.messageService.add(`Message: Selected employee ${employee.name}`);
   }
   ngOnInit(): void {
     this.getEmployees();
+  }
+
+  getEmployees(): void {
+    this.employeeService
+      .getEmployees()
+      .subscribe((employees) => (this.employees = employees));
   }
 }
 

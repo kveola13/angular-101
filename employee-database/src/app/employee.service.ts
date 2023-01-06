@@ -11,7 +11,7 @@ export class EmployeeService {
 
   getEmployees(): Observable<Employee[]> {
     const employees = of(EMPLOYEES);
-    this.messageService.add('EmployeeService: fetched employees');
+    this.messageService.add('Message: fetched employees');
     return employees;
   }
 }
