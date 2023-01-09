@@ -20,4 +20,17 @@ export class EmployeesComponent implements OnInit {
       .getEmployees()
       .subscribe((employees) => (this.employees = employees));
   }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.employeeService
+      .addEmployee({ name: name, email: name + '@itera.no' } as Employee)
+      .subscribe((employee) => this.employees.push(employee));
+  }
+  delete(employee: Employee): void {
+    this.employees = this.employees.filter((e) => e !== employee);
+    this.employeeService.deleteEmployee(employee.id).subscribe();
+  }
 }

@@ -46,4 +46,34 @@ export class EmployeeService {
       return of(result as T);
     };
   }
+  addEmployee(employee: Employee): Observable<Employee> {
+    return this.http
+      .post<Employee>(this.employeesUrl, employee, this.httpOptions)
+      .pipe(
+        tap((newEmployee: Employee) =>
+          this.log(`added employee with id ${newEmployee.id}`)
+        ),
+        catchError(this.handleError<Employee>('addEmployee'))
+      );
+  }
+  deleteEmployee(id: number): Observable<Employee> {
+    const url = `${this.employeesUrl}/${id}`;
+    return this.http.delete<Employee>(url, this.httpOptions).pipe(
+      tap((_) => this.log(`deleted Employee ${id}`)),
+      catchError(this.handleError<Employee>('deleteEmployee'))
+    );
+  }
+  searchEmployees(term: string) {
+    if (!term.trim()) {
+      return of();
+    }
+    return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
+      tap((t) =>
+        t.length
+          ? this.log(`found employees matching ${term}`)
+          : this.log(`no employees matching ${term}`)
+      ),
+      catchError(this.handleError<Employee>('deleteEmployee'))
+    );
+  }
 }

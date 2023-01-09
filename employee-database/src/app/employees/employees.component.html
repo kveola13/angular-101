@@ -5,4 +5,23 @@
       <span class="id">{{ employee.id }}</span> {{ employee.name }}
     </a>
   </li>
+  <button
+    type="button"
+    class="delete"
+    title="delete employee"
+    (click)="delete(employee)"
+  >
+    x
+  </button>
 </ul>
+<div>
+  <label for="new-employee">Employee name: </label>
+  <input id="new-employee #employeeName" />
+  <button
+    type="button"
+    class="add-button"
+    (click)="add(employeeName.value) employeeName.value = ''"
+  >
+    Add employee
+  </button>
+</div>
