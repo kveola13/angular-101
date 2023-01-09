@@ -52,8 +52,8 @@ export class EmployeeService {
       return of([]);
     }
     return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
-      tap((x) =>
-        x.length
+      tap((e) =>
+        e.length
           ? this.log(`found employees matching "${term}"`)
           : this.log(`no employees matching "${term}"`)
       ),
