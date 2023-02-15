@@ -1,1 +1,15 @@
-<p>display-items works!</p>
+<h2>Items</h2>
+
+<div *ngFor="let item of list">
+    <h3>
+        <a [title]="item.name + ' details'">
+            {{item.name}} <button (click)="handleClick()">-</button>
+        </a>
+    </h3>
+</div>
+
+<div>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <button class="button" type="submit">+</button>
+    </form>
+</div>
