@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'shopping-list';
+  presentableTitle = this.title.slice(0,1).toUpperCase() + this.title.slice(1)
 }
