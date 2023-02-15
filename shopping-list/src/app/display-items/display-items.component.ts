@@ -1,31 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ItemsService } from '../items.service';
-import { items } from './items';
+import { Item } from './items';
 @Component({
   selector: 'app-display-items',
   templateUrl: './display-items.component.html',
   styleUrls: ['./display-items.component.css']
 })
-export class DisplayItemsComponent implements OnInit {
-  checkoutForm = this.formBuilder.group({
-    name: '',
-    address: ''
-  });
-  constructor(private itemsService: ItemsService, private formBuilder: FormBuilder) { }
+export class DisplayItemsComponent {
+  title = "Todo";
+  filter: "all" | "active" | "done" = "all";
+  disableButton = false;
+  allItems = [
+    { description: 'eat'},
+    { description: 'sleep' },
+    { description: 'play'},
+    { description: 'laugh'},
+  ];
 
-  list = this.itemsService.getItems()
-
-  ngOnInit(): void {
+  get items() {
+    return this.allItems;
   }
 
-  handleClick() {
-    console.log("Ping!")
+  handleChange(test: any) {
+    console.log(test)
   }
 
-  onSubmit(): void {
-    console.log(this.checkoutForm.value);
-    this.checkoutForm.reset();
+  addItem(description: string) {
+    if (description) {
+      this.allItems.push({
+        description
+      })
+    }
   }
-
+  removeItem(item: Item) {
+    if (this.items.find(i => i === item)) {
+      this.allItems = this.allItems.filter(i => i !== item)
+    }
+  }
 }

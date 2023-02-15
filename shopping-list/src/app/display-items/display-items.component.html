@@ -1,15 +1,15 @@
 <h2>Items</h2>
 
-<div *ngFor="let item of list">
-    <h3>
-        <a [title]="item.name + ' details'">
-            {{item.name}} <button (click)="handleClick()">-</button>
-        </a>
-    </h3>
-</div>
-
-<div>
-    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <button class="button" type="submit">+</button>
-    </form>
-</div>
+<input #newItem
+placeholder="Add item"
+(keyup.enter)="addItem(newItem.value); newItem.value=''"
+/>
+<button class="btn-primary" 
+(click)="addItem(newItem.value); newItem.value=''"
+[disabled]="!newItem.value"
+>+</button>
+<ul>
+    <li *ngFor="let item of items">{{item.description}}
+        <button (click)="removeItem(item)">-</button>
+    </li>
+</ul>
