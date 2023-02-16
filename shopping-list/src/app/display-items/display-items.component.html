@@ -1,15 +1,49 @@
 <h2>Items</h2>
 
-<input #newItem
-placeholder="Add item"
-(keyup.enter)="addItem(newItem.value); newItem.value=''"
+<input
+  #newItem
+  placeholder="Add item"
+  (keyup.enter)="addItem(newItem.value); newItem.value = ''"
 />
-<button class="btn-primary" 
-(click)="addItem(newItem.value); newItem.value=''"
-[disabled]="!newItem.value"
->+</button>
+<button
+  class="btn-primary"
+  (click)="addItem(newItem.value); newItem.value = ''"
+  [disabled]="!newItem.value"
+>
+  +
+</button>
 <ul>
-    <li *ngFor="let item of items">{{item.description}}
-        <button (click)="removeItem(item)">-</button>
-    </li>
+  <li *ngFor="let item of items">
+    {{ item.description }}
+    <button (click)="removeItem(item)">-</button>
+  </li>
 </ul>
+
+<form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+  <div class="form-group">
+    <label for="description"></label>
+    <input
+      type="text"
+      class="form-control"
+      id="description"
+      required
+      [(ngModel)]="model.description"
+      name="description"
+      placeholder="Add item"
+      #description="ngModel"
+    />
+    <button (click)="addItem(model.description)"
+    [disabled]="description.invalid || findItem(model.description)">+</button>
+    <div [hidden]="description.valid" class="alert alert-danger">
+      Item is is invalid
+    </div>
+    <div [hidden]="!findItem(model.description)" class="alert alert-danger">
+        Item already exists
+    </div>
+  </div>
+</form>
+
+<div>
+  <hr />
+  Description via form.controls = {{ showFormControls(todoForm) }}
+</div>

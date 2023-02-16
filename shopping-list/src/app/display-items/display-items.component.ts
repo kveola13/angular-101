@@ -18,8 +18,17 @@ export class DisplayItemsComponent {
     { description: 'laugh'},
   ];
 
+  submitted = false;
+  onSubmit() { this.submitted = true; }
+
+  model:Item = { description: "" };
+
   get items() {
     return this.allItems;
+  }
+
+  findItem(description: String){
+    return this.allItems.find(i=> i.description === description)
   }
 
   handleChange(test: any) {
@@ -32,10 +41,16 @@ export class DisplayItemsComponent {
         description
       })
     }
+    this.model.description = ""
   }
   removeItem(item: Item) {
     if (this.items.find(i => i === item)) {
       this.allItems = this.allItems.filter(i => i !== item)
     }
+  }
+
+  showFormControls(form: any) {
+    return form && form.controls.description &&
+    form.controls.description.value;
   }
 }
